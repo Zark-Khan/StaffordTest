@@ -63,14 +63,15 @@ function ServiceMain({ data }) {
     //     setCompare(`${index}-center`);
     //   }
     // });
-    let elem = document.getElementById(service);
-    if (elem) {
-      elem.scrollIntoView({
-        behavior: "smooth",
-        block: "start", // Scrolls to the top of the element
-        // inline: "center",
-      });
-    }
+    setTimeout(() => {
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 1500);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -389,10 +390,10 @@ function ServiceMain({ data }) {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
-                          // direction={direction}
-                          // duration={1200}
-                          // delay={100}
-                          // triggerOnce
+                          direction={direction}
+                          duration={1200}
+                          delay={100}
+                          triggerOnce
                           in={isVisible}
                         >
                           <Box
