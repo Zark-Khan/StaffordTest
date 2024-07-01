@@ -73,7 +73,7 @@ function ServiceMain({ data }) {
             block: "start", // Scroll to the top of the element
             inline: "nearest", // Scroll to the nearest edge of the element
           });
-        }, 2000)
+        }, 100)
        } else{
       elem.scrollIntoView({
         behavior: "smooth", // Smooth scrolling animation
