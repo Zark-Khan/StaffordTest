@@ -60,7 +60,7 @@ function ServiceMain({ data }) {
     }
   }, []);
 
-  
+
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
@@ -79,7 +79,7 @@ function ServiceMain({ data }) {
           // block: "start",
         });
       }
-    }, focus >= 800 ?  1200 : 0);
+    }, focus >= 800 ? 1200 : 0);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
