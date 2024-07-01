@@ -54,7 +54,13 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
+  useEffect(() => {
+    if (window) {
+      setFocus(window.innerWidth);
+    }
+  }, []);
 
+  
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
@@ -73,7 +79,7 @@ function ServiceMain({ data }) {
           // block: "start",
         });
       }
-    }, 1200);
+    }, focus >= 800 ?  1200 : 0);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -97,11 +103,7 @@ function ServiceMain({ data }) {
   //   };
   // }, []);
 
-  useEffect(() => {
-    if (window) {
-      setFocus(window.innerWidth);
-    }
-  }, []);
+
 
   const [imgVisibility, setImgVisibility] = useState([]);
 
