@@ -54,7 +54,6 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
-  const [dur, setDur] = useState(1200);
 
   useEffect(() => {
     const hashRoute = window.location.hash;
@@ -74,7 +73,7 @@ function ServiceMain({ data }) {
           // block: "start",
         });
       }
-    }, 1500);
+    }, 1200);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
