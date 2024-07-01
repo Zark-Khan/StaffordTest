@@ -54,16 +54,18 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
+  const [dur, setDur] = useState(1200);
 
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
 
-    // data?.Services_data.forEach((item, index) => {
-    //   if (item?.Service_post_title?.toLowerCase() === service) {
-    //     setCompare(`${index}-center`);
-    //   }
-    // });
+    data?.Services_data.forEach((item, index) => {
+      if (item?.Service_post_title?.toLowerCase() === service) {
+        setDur(0);
+      }
+    });
+
     setTimeout(() => {
       let elem = document.getElementById(service);
       if (elem) {
@@ -123,7 +125,7 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={1200}
+                          duration={dur}
                           delay={100}
                           triggerOnce
                           in={isVisible}
