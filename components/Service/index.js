@@ -59,22 +59,14 @@ function ServiceMain({ data }) {
     const service = hashRoute.replace("#", "");
   
     let elem = document.getElementById(service);
-    if (elem && focus < 800) {
-      setTimeout(() => {
-        elem.scrollIntoView({
-          behavior: "smooth", // Smooth scrolling animation
-          block: "nearest", // Scroll to the top of the element
-          inline: "nearest", // Scroll to the nearest edge of the element
-        });
-      }, 2000); // Adjust delay time as needed (in milliseconds)
-    } else if (elem) {
+    if (elem) {
       elem.scrollIntoView({
         behavior: "smooth", // Smooth scrolling animation
-        block: "start", // Scroll to the top of the element
-        inline: "start", // Scroll to the nearest edge of the element
+        block: "nearest", // Scroll to the nearest edge of the element
+        inline: "nearest", // Scroll to the nearest edge of the element
       });
     }
-  }, [data?.Services_data, focus]);
+  }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
