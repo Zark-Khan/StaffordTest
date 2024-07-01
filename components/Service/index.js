@@ -394,6 +394,7 @@ function ServiceMain({ data }) {
                           delay={100}
                           triggerOnce
                           in={isVisible}
+                          id={service?.Service_post_title?.toLowerCase()}
                         >
                           <Box
                             key={index}
@@ -410,7 +411,6 @@ function ServiceMain({ data }) {
                               }}
                               >
                               <Typography
-                              id={service?.Service_post_title?.toLowerCase()}
                                 sx={{
                                   color: "header.text",
                                   fontSize: "47px",
