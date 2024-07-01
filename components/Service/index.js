@@ -69,8 +69,8 @@ function ServiceMain({ data }) {
       let elem = document.getElementById(service);
       if (elem) {
         elem.scrollIntoView({
-          // behavior: "smooth",
-          // block: "start",
+          behavior: "smooth",
+          block: "start",
         });
       }
     }, 1200);
@@ -392,14 +392,15 @@ function ServiceMain({ data }) {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
-                          direction={direction}
-                          duration={1200}
-                          delay={100}
-                          triggerOnce
-                          in={isVisible}
+                        direction={direction}
+                        duration={800}
+                        delay={100}
+                        triggerOnce
+                        in={isVisible}
                         >
                           <Box
                             key={index}
+                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",
@@ -414,7 +415,6 @@ function ServiceMain({ data }) {
                               }}
                               >
                               <Typography
-                                id={service?.Service_post_title?.toLowerCase()}
                                 sx={{
                                   color: "header.text",
                                   fontSize: "47px",
