@@ -71,7 +71,6 @@ function ServiceMain({ data }) {
     //   }
     // });
     
-    setTimeout(() => {
       let elem = document.getElementById(service);
       if (elem) {
         elem.scrollIntoView({
@@ -79,7 +78,6 @@ function ServiceMain({ data }) {
           // block: "start",
         });
       }
-    }, focus >= 800 ? 1200 : 0);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -106,7 +104,14 @@ function ServiceMain({ data }) {
 
 
   const [imgVisibility, setImgVisibility] = useState([]);
+  const [hashExists, setHashExists] = useState(false);
 
+  useEffect(() => {
+    const hashRoute = window.location.hash;
+    if (hashRoute) {
+      setHashExists(true);
+    }
+  }, []);
   return (
     <>
       {focus >= 800 && (
@@ -395,8 +400,8 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={1000}
-                          delay={20}
+                          duration={hashExists ? 100 : 1200}
+                          delay={hashExists ? 0 : 100}
                           triggerOnce
                           in={isVisible}
                         >
