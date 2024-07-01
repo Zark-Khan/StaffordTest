@@ -398,6 +398,7 @@ function ServiceMain({ data }) {
                           delay={100}
                           triggerOnce
                           in={isVisible}
+                          key={index}
                         >
                           <Box
                             key={index}
