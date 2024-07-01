@@ -393,7 +393,7 @@ function ServiceMain({ data }) {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
-                          direction={direction}
+                          direction={dur === 1200 && direction}
                           duration={dur}
                           delay={100}
                           triggerOnce
