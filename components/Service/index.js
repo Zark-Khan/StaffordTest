@@ -68,7 +68,7 @@ function ServiceMain({ data }) {
       elem.scrollIntoView({
         behavior: "smooth",
         block: "start", // Scrolls to the top of the element
-        inline: "center",
+        // inline: "center",
       });
     }
   }, [data?.Services_data]);
