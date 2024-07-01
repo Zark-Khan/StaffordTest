@@ -60,18 +60,18 @@ function ServiceMain({ data }) {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
 
-    data?.Services_data.forEach((item, index) => {
-      if (item?.Service_post_title?.toLowerCase() === service) {
-        setDur(0);
-      }
-    });
+    // data?.Services_data.forEach((item, index) => {
+    //   if (item?.Service_post_title?.toLowerCase() === service) {
+    //     setDur(0);
+    //   }
+    // });
     
     setTimeout(() => {
       let elem = document.getElementById(service);
       if (elem) {
         elem.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+          // behavior: "smooth",
+          // block: "start",
         });
       }
     }, 1500);
@@ -393,8 +393,8 @@ function ServiceMain({ data }) {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
-                          direction={dur === 1200 && direction}
-                          duration={dur}
+                          direction={direction}
+                          duration={1200}
                           delay={100}
                           triggerOnce
                           in={isVisible}
