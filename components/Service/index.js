@@ -385,7 +385,7 @@ function ServiceMain({ data }) {
                 console.log("first", hashExists);
                 return (
                   <React.Fragment key={index} >
-                    {hashExists === service?.Service_post_title?.toLowerCase() ? (
+                    { focus < 800 && hashExists === service?.Service_post_title?.toLowerCase() ? (
                       <>
                          <Box
                          key={index}
