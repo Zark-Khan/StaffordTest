@@ -12,7 +12,6 @@ function ServiceMain({ data }) {
   console.log("fdsd", data);
 
   const [focus, setFocus] = useState(0);
-  const [delay, setDelay] = useState(100);
   
   // const [contentHeight, setContentHeight] = useState([0, 0, 0, 0]);
   // const [compare, setCompare] = useState("0-center");
@@ -55,24 +54,24 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
-
+  const [isVisible, setIsVisible] = useState(false);
+  const targetRef = useRef(null);
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
 
-    data?.Services_data.forEach((item, index) => {
-      if (item?.Service_post_title?.toLowerCase() === service) {
-        setDelay(4000);
-      }
-    });
+    // data?.Services_data.forEach((item, index) => {
+    //   if (item?.Service_post_title?.toLowerCase() === service) {
+    //     setDur(0);
+    //   }
+    // });
     
-      let elem = document.getElementById(service);
-      if (elem) {
-        elem.scrollIntoView({
-          // behavior: "smooth",
-          // block: "start",
-        });
-      }
+    const serviceElement = targetRef.current;
+
+    if (serviceElement) {
+      // Set visibility state to true to trigger slide animation
+      setIsVisible(true);
+    }
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -388,12 +387,12 @@ function ServiceMain({ data }) {
                 const direction = "up";
                 return (
                   <React.Fragment key={index} >
-                    <VisibilitySensor>
-                      {({ isVisible }) => (
+                    {/* <VisibilitySensor> */}
+                      {/* {({ isVisible }) => ( */}
                         <Slide
                         direction={direction}
                         duration={1200}
-                        delay={delay}
+                        delay={100}
                         triggerOnce
                         in={isVisible}
                         >
@@ -690,8 +689,8 @@ function ServiceMain({ data }) {
                             </Box>
                           )}
                         </Slide>
-                      )}
-                    </VisibilitySensor>
+                      {/* )} */}
+                    {/* </VisibilitySensor> */}
                   </React.Fragment>
                 );
               })}
