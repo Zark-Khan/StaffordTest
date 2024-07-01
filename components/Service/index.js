@@ -380,13 +380,12 @@ function ServiceMain({ data }) {
       )}
       {focus < 800 && (
         <Box sx={{ width: "100%" }}>
-          hello
           {data !== null && data?.Services_data?.length > 0 && (
             <>
               {data.Services_data.map((service, index) => {
                 const direction = "up";
                 return (
-                  <React.Fragment key={index}>
+                  <React.Fragment key={index}  id={service?.Service_post_title?.toLowerCase()}>
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
@@ -403,7 +402,6 @@ function ServiceMain({ data }) {
                               // flex:"column",
                               justifyContent: "center",
                             }}
-                              id={service?.Service_post_title?.toLowerCase()}
                             >
                             <Box
                               sx={{
