@@ -55,15 +55,16 @@ function ServiceMain({ data }) {
   // }, [data?.Services_data, focus]);
 
   useEffect(() => {
+    if (window.location.hash) {
     const hashRoute = window.location.hash;
-    const service = hashRoute.replace("#", "");
+    // const service = hashRoute.replace("#", "");
 
     // data?.Services_data.forEach((item, index) => {
     //   if (item?.Service_post_title?.toLowerCase() === service) {
     //     setCompare(`${index}-center`);
     //   }
     // });
-    let elem = document.getElementById(service);
+    const elem = document.getElementById(hashRoute.slice(1));
     if (elem) {
       elem.scrollIntoView({
         // behavior: "smooth",
@@ -71,8 +72,21 @@ function ServiceMain({ data }) {
         // inline: "center",
       });
     }
-  }, [data?.Services_data]);
+  }
+  }, [data?.Services_data, window.location.hash]);
 
+  // useEffect(() => {
+  //   if (location.hash) {
+  //     setTimeout(() => {
+  //       const elem = document.getElementById(location.hash.slice(1));
+  //       if (elem) {
+  //         elem.scrollIntoView({ behavior: 'smooth' });
+  //       }
+  //     }, 100); // Adjust the delay as needed
+  //   } else {
+  //     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  //   }
+  // }, [location.pathname, location.hash]);
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
   //     $(window).width() / 2,
