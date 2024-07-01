@@ -400,10 +400,10 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={hashExists ? -100 : 1200}
-                          delay={hashExists ? 10 : 100}
+                          duration={hashExists ? 400 : 1200}
+                          delay={hashExists ? 50 : 100}
                           triggerOnce
-                          in={isVisible}
+                          in={hashExists ? hashExists : isVisible}
                         >
                           <Box
                             key={index}
