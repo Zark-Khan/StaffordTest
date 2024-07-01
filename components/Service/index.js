@@ -65,7 +65,7 @@ function ServiceMain({ data }) {
         setDur(0);
       }
     });
-
+    
     setTimeout(() => {
       let elem = document.getElementById(service);
       if (elem) {
@@ -125,7 +125,7 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={dur}
+                          duration={1200}
                           delay={100}
                           triggerOnce
                           in={isVisible}
@@ -394,7 +394,7 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={1200}
+                          duration={dur}
                           delay={100}
                           triggerOnce
                           in={isVisible}
