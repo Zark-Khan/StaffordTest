@@ -12,6 +12,7 @@ function ServiceMain({ data }) {
   console.log("fdsd", data);
 
   const [focus, setFocus] = useState(0);
+  const [delay, setDelay] = useState(100);
   
   // const [contentHeight, setContentHeight] = useState([0, 0, 0, 0]);
   // const [compare, setCompare] = useState("0-center");
@@ -55,26 +56,26 @@ function ServiceMain({ data }) {
   //   }
   // }, [data?.Services_data, focus]);
 
-  // useEffect(() => {
-  //   const hashRoute = window.location.hash;
-  //   const service = hashRoute.replace("#", "");
+  useEffect(() => {
+    const hashRoute = window.location.hash;
+    const service = hashRoute.replace("#", "");
 
-  //   // data?.Services_data.forEach((item, index) => {
-  //   //   if (item?.Service_post_title?.toLowerCase() === service) {
-  //   //     setDur(0);
-  //   //   }
-  //   // });
+    data?.Services_data.forEach((item, index) => {
+      if (item?.Service_post_title?.toLowerCase() === service) {
+        setDelay(0);
+      }
+    });
     
-  //   setTimeout(() => {
-  //     let elem = document.getElementById(service);
-  //     if (elem) {
-  //       elem.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "start",
-  //       });
-  //     }
-  //   }, 1200);
-  // }, [data?.Services_data]);
+    setTimeout(() => {
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView({
+          // behavior: "smooth",
+          // block: "start",
+        });
+      }
+    }, 1200);
+  }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
@@ -394,13 +395,13 @@ function ServiceMain({ data }) {
                         <Slide
                         direction={direction}
                         duration={1200}
-                        delay={100}
+                        delay={delay}
                         triggerOnce
                         in={isVisible}
                         >
                           <Box
                             key={index}
-                            id={`/services#${service?.Service_post_title?.toLowerCase()}`}
+                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",

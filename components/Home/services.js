@@ -57,16 +57,13 @@ function Services({ data }) {
       });
     }
   };
-  const handleRouteClick = (event) => {
-    event.preventDefault();
+  const handleRouteClick = () => {
     setHoverState([false, false, false, false]);
     videoRefs.current.forEach((item, i) => {
       item.pause();
       item.currentTime = 0;
     });
-    const hash = event.currentTarget.getAttribute("href").split("#")[1];
-    // Navigate programmatically to the hash
-    window.location.hash = hash;
+    
   };
   const handleHoverLeave = (index) => {
     setHoverState((prevHoverState) =>
@@ -215,7 +212,17 @@ function Services({ data }) {
                   }}
                 >
                   <a
-                     href={`/services#${item?.Service_title?.toLowerCase()}`}
+                    href={`/services#${
+                      item?.Service_title
+                        ? item?.Service_title?.toLowerCase()
+                        : index === 0
+                        ? "creative"
+                        : index === 1
+                        ? "media"
+                        : index === 2
+                        ? "experiental"
+                        : "advisory"
+                    }`}
                     style={{
                       height: "-webkit-fill-available",
                       width: "100%",
