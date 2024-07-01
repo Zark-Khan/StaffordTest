@@ -12,7 +12,7 @@ function ServiceMain({ data }) {
   console.log("fdsd", data);
 
   const [focus, setFocus] = useState(0);
-  const [contentHeight, setContentHeight] = useState([0, 0, 0, 0]);
+  // const [contentHeight, setContentHeight] = useState([0, 0, 0, 0]);
   // const [compare, setCompare] = useState("0-center");
   // const contentRefOne = useRef(null);
   // const contentRefTwo = useRef(null);
@@ -397,20 +397,20 @@ function ServiceMain({ data }) {
                         >
                           <Box
                             key={index}
-                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",
                               justifyContent: "center",
                             }}
-                          >
+                            >
                             <Box
                               sx={{
                                 width: "100%",
                                 maxWidth: "80vw",
                               }}
-                            >
+                              >
                               <Typography
+                              id={service?.Service_post_title?.toLowerCase()}
                                 sx={{
                                   color: "header.text",
                                   fontSize: "47px",
