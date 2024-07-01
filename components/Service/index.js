@@ -394,8 +394,8 @@ function ServiceMain({ data }) {
                           delay={100}
                           triggerOnce
                           in={isVisible}
-                          id={service?.Service_post_title?.toLowerCase()}
                         >
+                        <Box id={service?.Service_post_title?.toLowerCase()}>
                           <Box
                             key={index}
                             sx={{
@@ -686,6 +686,7 @@ function ServiceMain({ data }) {
                               </Box>
                             </Box>
                           )}
+                          </Box>
                         </Slide>
                       )}
                     </VisibilitySensor>
