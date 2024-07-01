@@ -400,8 +400,8 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={hashExists ? 400 : 1200}
-                          delay={hashExists ? 0 : 100}
+                          duration={hashExists ? -100 : 1200}
+                          delay={hashExists ? 10 : 100}
                           triggerOnce
                           in={isVisible}
                         >
