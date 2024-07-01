@@ -55,26 +55,26 @@ function ServiceMain({ data }) {
   //   }
   // }, [data?.Services_data, focus]);
 
-  useEffect(() => {
-    const hashRoute = window.location.hash;
-    const service = hashRoute.replace("#", "");
+  // useEffect(() => {
+  //   const hashRoute = window.location.hash;
+  //   const service = hashRoute.replace("#", "");
 
-    // data?.Services_data.forEach((item, index) => {
-    //   if (item?.Service_post_title?.toLowerCase() === service) {
-    //     setDur(0);
-    //   }
-    // });
+  //   // data?.Services_data.forEach((item, index) => {
+  //   //   if (item?.Service_post_title?.toLowerCase() === service) {
+  //   //     setDur(0);
+  //   //   }
+  //   // });
     
-    setTimeout(() => {
-      let elem = document.getElementById(service);
-      if (elem) {
-        elem.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 1200);
-  }, [data?.Services_data]);
+  //   setTimeout(() => {
+  //     let elem = document.getElementById(service);
+  //     if (elem) {
+  //       elem.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "start",
+  //       });
+  //     }
+  //   }, 1200);
+  // }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
@@ -393,14 +393,14 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                         direction={direction}
-                        duration={800}
+                        duration={1200}
                         delay={100}
                         triggerOnce
                         in={isVisible}
                         >
                           <Box
                             key={index}
-                            id={service?.Service_post_title?.toLowerCase()}
+                            id={`/services#${service?.Service_post_title?.toLowerCase()}`}
                             sx={{
                               display: "flex",
                               // flex:"column",
