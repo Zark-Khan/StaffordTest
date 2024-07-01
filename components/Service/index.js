@@ -61,24 +61,21 @@ function ServiceMain({ data }) {
   }, []);
 
 
-  // useEffect(() => {
-  //   const hashRoute = window.location.hash;
-  //   const service = hashRoute.replace("#", "");
+  useEffect(() => {
+    const hashRoute = window.location.hash;
+    const service = hashRoute.replace("#", "");
 
-  //   // data?.Services_data.forEach((item, index) => {
-  //   //   if (item?.Service_post_title?.toLowerCase() === service) {
-  //   //     setDur(0);
-  //   //   }
-  //   // });
+    // data?.Services_data.forEach((item, index) => {
+    //   if (item?.Service_post_title?.toLowerCase() === service) {
+    //     setDur(0);
+    //   }
+    // });
     
-  //     let elem = document.getElementById(service);
-  //     if (elem) {
-  //       elem.scrollIntoView({
-  //         // behavior: "smooth",
-  //         // block: "start",
-  //       });
-  //     }
-  // }, [data?.Services_data]);
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView();
+      }
+  }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
@@ -106,21 +103,12 @@ function ServiceMain({ data }) {
   const [imgVisibility, setImgVisibility] = useState([]);
   const [hashExists, setHashExists] = useState(false);
 
-  const [delayedVisibleElements, setDelayedVisibleElements] = useState([]);
-
   useEffect(() => {
     const hashRoute = window.location.hash;
     if (hashRoute) {
       setHashExists(true);
-      setTimeout(() => {
-        let elem = document.getElementById(hashRoute.replace("#", ""));
-        if (elem) {
-          elem.scrollIntoView();
-        }
-        setDelayedVisibleElements([hashRoute.replace("#", "")]);
-      }, 100); // Small delay to ensure scrolling is complete
     }
-  }, [data?.Services_data]);
+  }, []);
   return (
     <>
       {focus >= 800 && (
@@ -406,15 +394,13 @@ function ServiceMain({ data }) {
                 return (
                   <React.Fragment key={index} >
                     <VisibilitySensor partialVisibility>
-                      {({ isVisible }) => {
-                        const isHashElement = delayedVisibleElements.includes(service?.Service_post_title?.toLowerCase());
-                        return (
+                      {({ isVisible }) => (
                         <Slide
                         direction={direction}
-                        duration={1200}
-                        delay={isHashElement ? 1000 : 100}  // Adjust delay based on hash
+                        duration={hashExists ? 400 : 1200}
+                        delay={100}  // Consistent delay
                         triggerOnce
-                        in={isVisible || isHashElement}
+                        in={isVisible}
                         >
                           <Box
                             key={index}
@@ -710,8 +696,7 @@ function ServiceMain({ data }) {
                             </Box>
                           )}
                         </Slide>
-                        )
-                      }}
+                      )}
                     </VisibilitySensor>
                   </React.Fragment>
                 );
