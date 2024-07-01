@@ -417,13 +417,13 @@ function ServiceMain({ data }) {
                               // flex:"column",
                               justifyContent: "center",
                             }}
+                              id={service?.Service_post_title?.toLowerCase()}
                             >
                             <Box
                               sx={{
                                 width: "100%",
                                 maxWidth: "80vw",
                               }}
-                              id={service?.Service_post_title?.toLowerCase()}
                               >
                               <Typography
                                 sx={{
