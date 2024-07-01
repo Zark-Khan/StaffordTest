@@ -54,19 +54,33 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
+
+  useEffect(() => {
+    if (window) {
+      setFocus(window.innerWidth);
+    }
+  }, []);
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
   
     let elem = document.getElementById(service);
-    if (elem) {
+    if (elem && focus < 800) {
+      setTimeout(() => {
+        elem.scrollIntoView({
+          behavior: "smooth", // Smooth scrolling animation
+          block: "start", // Scroll to the top of the element
+          inline: "start", // Scroll to the nearest edge of the element
+        });
+      }, 2000); // Adjust delay time as needed (in milliseconds)
+    } else if (elem) {
       elem.scrollIntoView({
         behavior: "smooth", // Smooth scrolling animation
-        block: "nearest", // Scroll to the nearest edge of the element
-        inline: "nearest", // Scroll to the nearest edge of the element
+        block: "start", // Scroll to the top of the element
+        inline: "start", // Scroll to the nearest edge of the element
       });
     }
-  }, [data?.Services_data]);
+  }, [data?.Services_data, focus]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
@@ -385,7 +399,7 @@ function ServiceMain({ data }) {
                 console.log("first", hashExists);
                 return (
                   <React.Fragment key={index} >
-                    { focus < 800 && hashExists === service?.Service_post_title?.toLowerCase() ? (
+                    { hashExists === service?.Service_post_title?.toLowerCase() ? (
                       <>
                          <Box
                          key={index}
