@@ -67,7 +67,7 @@ function ServiceMain({ data }) {
     if (elem) {
       elem.scrollIntoView({
         // behavior: "smooth",
-        block: "start", // Scrolls to the top of the element
+        // block: "start", // Scrolls to the top of the element
         // inline: "center",
       });
     }
@@ -397,6 +397,7 @@ function ServiceMain({ data }) {
                         >
                           <Box
                             key={index}
+                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",
@@ -411,7 +412,6 @@ function ServiceMain({ data }) {
                               }}
                               >
                               <Typography
-                                id={service?.Service_post_title?.toLowerCase()}
                                 sx={{
                                   color: "header.text",
                                   fontSize: "47px",
