@@ -393,7 +393,7 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={1150}
+                          duration={1100}
                           delay={100}
                           triggerOnce
                           in={isVisible}
