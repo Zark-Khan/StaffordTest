@@ -74,7 +74,7 @@ function ServiceMain({ data }) {
           block: "start",
         });
       }
-    }, 100);
+    }, 1500);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
