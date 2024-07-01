@@ -66,8 +66,8 @@ function ServiceMain({ data }) {
     let elem = document.getElementById(service);
     if (elem) {
       elem.scrollIntoView({
-        // behavior: "smooth",
-        // block: "start", // Scrolls to the top of the element
+        behavior: "smooth",
+        block: "start", // Scrolls to the top of the element
         // inline: "center",
       });
     }
@@ -389,10 +389,10 @@ function ServiceMain({ data }) {
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
-                          direction={direction}
-                          duration={1200}
-                          delay={100}
-                          triggerOnce
+                          // direction={direction}
+                          // duration={1200}
+                          // delay={100}
+                          // triggerOnce
                           in={isVisible}
                         >
                           <Box
