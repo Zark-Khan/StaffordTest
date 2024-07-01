@@ -410,7 +410,6 @@ function ServiceMain({ data }) {
                           triggerOnce
                           in={isVisible}
                         >
-                        <Box id={service?.Service_post_title?.toLowerCase()}>
                           <Box
                             key={index}
                             sx={{
@@ -424,6 +423,7 @@ function ServiceMain({ data }) {
                                 width: "100%",
                                 maxWidth: "80vw",
                               }}
+                              id={service?.Service_post_title?.toLowerCase()}
                               >
                               <Typography
                                 sx={{
@@ -701,7 +701,6 @@ function ServiceMain({ data }) {
                               </Box>
                             </Box>
                           )}
-                          </Box>
                         </Slide>
                       )}
                     </VisibilitySensor>
