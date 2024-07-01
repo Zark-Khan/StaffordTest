@@ -62,7 +62,7 @@ function ServiceMain({ data }) {
 
     data?.Services_data.forEach((item, index) => {
       if (item?.Service_post_title?.toLowerCase() === service) {
-        setDelay(0);
+        setDelay(4000);
       }
     });
     
