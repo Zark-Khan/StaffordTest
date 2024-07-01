@@ -12,6 +12,7 @@ function ServiceMain({ data }) {
   console.log("fdsd", data);
 
   const [focus, setFocus] = useState(0);
+  
   // const [contentHeight, setContentHeight] = useState([0, 0, 0, 0]);
   // const [compare, setCompare] = useState("0-center");
   // const contentRefOne = useRef(null);
@@ -63,15 +64,14 @@ function ServiceMain({ data }) {
     //     setCompare(`${index}-center`);
     //   }
     // });
-    setTimeout(() => {
-      let elem = document.getElementById(service);
-      if (elem) {
-        elem.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 1500);
+    let elem = document.getElementById(service);
+    if (elem) {
+      elem.scrollIntoView({
+        // behavior: "smooth",
+        block: "start", // Scrolls to the top of the element
+        // inline: "center",
+      });
+    }
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -102,7 +102,12 @@ function ServiceMain({ data }) {
   }, []);
 
   const [imgVisibility, setImgVisibility] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    // Check if there's a hash in the URL and update state accordingly
+    setIsVisible(!window.location.hash);
+  }, []);
   return (
     <>
       {focus >= 800 && (
