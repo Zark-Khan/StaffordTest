@@ -66,7 +66,6 @@ function ServiceMain({ data }) {
       }
     });
     
-    setTimeout(() => {
       let elem = document.getElementById(service);
       if (elem) {
         elem.scrollIntoView({
@@ -74,7 +73,6 @@ function ServiceMain({ data }) {
           // block: "start",
         });
       }
-    }, 100);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
