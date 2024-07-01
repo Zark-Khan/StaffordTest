@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -54,8 +54,7 @@ function ServiceMain({ data }) {
   //     });
   //   }
   // }, [data?.Services_data, focus]);
-  const [isVisible, setIsVisible] = useState(false);
-  const targetRef = useRef(null);
+
   useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
@@ -66,14 +65,15 @@ function ServiceMain({ data }) {
     //   }
     // });
     
-    const serviceToAnimate = data?.Services_data.find(
-      item => item.Service_post_title?.toLowerCase() === service
-    );
-
-    if (serviceToAnimate) {
-      // Set visibility state to true to trigger slide animation
-      setIsVisible(true);
-    }
+    setTimeout(() => {
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView({
+          // behavior: "smooth",
+          // block: "start",
+        });
+      }
+    }, 1200);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -389,14 +389,14 @@ function ServiceMain({ data }) {
                 const direction = "up";
                 return (
                   <React.Fragment key={index} >
-                    {/* <VisibilitySensor> */}
-                      {/* {({ isVisible }) => ( */}
+                    <VisibilitySensor>
+                      {({ isVisible }) => (
                         <Slide
-                        direction={direction}
-                        duration={1200}
-                        delay={100}
-                        triggerOnce
-                        in={isVisible}
+                          direction={direction}
+                          duration={1200}
+                          delay={100}
+                          triggerOnce
+                          in={isVisible}
                         >
                           <Box
                             key={index}
@@ -691,8 +691,8 @@ function ServiceMain({ data }) {
                             </Box>
                           )}
                         </Slide>
-                      {/* )} */}
-                    {/* </VisibilitySensor> */}
+                      )}
+                    </VisibilitySensor>
                   </React.Fragment>
                 );
               })}
