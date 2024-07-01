@@ -212,14 +212,15 @@ function Services({ data }) {
                 >
                   <a
                     href={`/services#${
-                      item?.Service_title.toLowerCase()
-                        // : index === 0
-                        // ? "consulting"
-                        // : index === 1
-                        // ? "creative"
-                        // : index === 2
-                        // ? "experiental"
-                        // : "media"
+                      item?.Service_title
+                        ? item?.Service_title?.toLowerCase()
+                        : index === 0
+                        ? "creative"
+                        : index === 1
+                        ? "media"
+                        : index === 2
+                        ? "experiental"
+                        : "advisory"
                     }`}
                     style={{
                       height: "-webkit-fill-available",
