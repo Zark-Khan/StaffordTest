@@ -55,16 +55,15 @@ function ServiceMain({ data }) {
   // }, [data?.Services_data, focus]);
 
   useEffect(() => {
-    if (window.location.hash) {
     const hashRoute = window.location.hash;
-    // const service = hashRoute.replace("#", "");
+    const service = hashRoute.replace("#", "");
 
     // data?.Services_data.forEach((item, index) => {
     //   if (item?.Service_post_title?.toLowerCase() === service) {
     //     setCompare(`${index}-center`);
     //   }
     // });
-    const elem = document.getElementById(hashRoute.slice(1));
+    let elem = document.getElementById(service);
     if (elem) {
       elem.scrollIntoView({
         // behavior: "smooth",
@@ -72,21 +71,8 @@ function ServiceMain({ data }) {
         // inline: "center",
       });
     }
-  }
-  }, [data?.Services_data, window.location.hash]);
+  }, [data?.Services_data]);
 
-  // useEffect(() => {
-  //   if (location.hash) {
-  //     setTimeout(() => {
-  //       const elem = document.getElementById(location.hash.slice(1));
-  //       if (elem) {
-  //         elem.scrollIntoView({ behavior: 'smooth' });
-  //       }
-  //     }, 100); // Adjust the delay as needed
-  //   } else {
-  //     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  //   }
-  // }, [location.pathname, location.hash]);
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
   //     $(window).width() / 2,
@@ -399,7 +385,7 @@ function ServiceMain({ data }) {
               {data.Services_data.map((service, index) => {
                 const direction = "up";
                 return (
-                  <React.Fragment key={index}  id={service?.Service_post_title?.toLowerCase()}>
+                  <React.Fragment key={index}   id={service?.Service_post_title?.toLowerCase()}>
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
@@ -416,6 +402,7 @@ function ServiceMain({ data }) {
                               // flex:"column",
                               justifyContent: "center",
                             }}
+                            
                             >
                             <Box
                               sx={{
