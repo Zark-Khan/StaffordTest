@@ -63,8 +63,8 @@ function ServiceMain({ data }) {
       setTimeout(() => {
         elem.scrollIntoView({
           behavior: "smooth", // Smooth scrolling animation
-          block: "start", // Scroll to the top of the element
-          inline: "start", // Scroll to the nearest edge of the element
+          block: "nearest", // Scroll to the top of the element
+          inline: "nearest", // Scroll to the nearest edge of the element
         });
       }, 2000); // Adjust delay time as needed (in milliseconds)
     } else if (elem) {
