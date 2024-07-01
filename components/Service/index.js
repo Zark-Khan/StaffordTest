@@ -380,6 +380,7 @@ function ServiceMain({ data }) {
       )}
       {focus < 800 && (
         <Box sx={{ width: "100%" }}>
+          hello
           {data !== null && data?.Services_data?.length > 0 && (
             <>
               {data.Services_data.map((service, index) => {
