@@ -385,7 +385,7 @@ function ServiceMain({ data }) {
               {data.Services_data.map((service, index) => {
                 const direction = "up";
                 return (
-                  <React.Fragment key={index}   id={service?.Service_post_title?.toLowerCase()}>
+                  <React.Fragment key={index} >
                     <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
@@ -397,6 +397,7 @@ function ServiceMain({ data }) {
                         >
                           <Box
                             key={index}
+                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",
