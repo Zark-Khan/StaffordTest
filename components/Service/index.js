@@ -393,14 +393,13 @@ function ServiceMain({ data }) {
                       {({ isVisible }) => (
                         <Slide
                           direction={direction}
-                          duration={1200}
+                          duration={1150}
                           delay={100}
                           triggerOnce
                           in={isVisible}
                         >
                           <Box
                             key={index}
-                            id={service?.Service_post_title?.toLowerCase()}
                             sx={{
                               display: "flex",
                               // flex:"column",
@@ -409,6 +408,8 @@ function ServiceMain({ data }) {
                             
                             >
                             <Box
+                              id={service?.Service_post_title?.toLowerCase()}
+                              key={index}
                               sx={{
                                 width: "100%",
                                 maxWidth: "80vw",
