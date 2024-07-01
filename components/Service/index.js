@@ -64,14 +64,15 @@ function ServiceMain({ data }) {
     //     setCompare(`${index}-center`);
     //   }
     // });
-    let elem = document.getElementById(service);
-    if (elem) {
-      elem.scrollIntoView({
-        // behavior: "smooth",
-        block: "start", // Scrolls to the top of the element
-        // inline: "center",
-      });
-    }
+    setTimeout(() => {
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
   }, [data?.Services_data]);
 
   // const handleScroll = (event) => {
@@ -102,12 +103,7 @@ function ServiceMain({ data }) {
   }, []);
 
   const [imgVisibility, setImgVisibility] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    // Check if there's a hash in the URL and update state accordingly
-    setIsVisible(!window.location.hash);
-  }, []);
   return (
     <>
       {focus >= 800 && (
