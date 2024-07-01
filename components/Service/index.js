@@ -55,27 +55,26 @@ function ServiceMain({ data }) {
   //   }
   // }, [data?.Services_data, focus]);
   useEffect(() => {
-    if (window) {
-      setFocus(window.innerWidth);
-    }
-  }, []);
-
-
-  useEffect(() => {
     const hashRoute = window.location.hash;
     const service = hashRoute.replace("#", "");
-
-    // data?.Services_data.forEach((item, index) => {
-    //   if (item?.Service_post_title?.toLowerCase() === service) {
-    //     setDur(0);
-    //   }
-    // });
-    
-      let elem = document.getElementById(service);
-      if (elem) {
-        elem.scrollIntoView();
-      }
-  }, [data?.Services_data]);
+  
+    let elem = document.getElementById(service);
+    if (elem && focus < 800) {
+      setTimeout(() => {
+        elem.scrollIntoView({
+          behavior: "smooth", // Smooth scrolling animation
+          block: "start", // Scroll to the top of the element
+          inline: "start", // Scroll to the nearest edge of the element
+        });
+      }, 2000); // Adjust delay time as needed (in milliseconds)
+    } else if (elem) {
+      elem.scrollIntoView({
+        behavior: "smooth", // Smooth scrolling animation
+        block: "start", // Scroll to the top of the element
+        inline: "start", // Scroll to the nearest edge of the element
+      });
+    }
+  }, [data?.Services_data, focus]);
 
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
@@ -101,12 +100,12 @@ function ServiceMain({ data }) {
 
 
   const [imgVisibility, setImgVisibility] = useState([]);
-  const [hashExists, setHashExists] = useState(false);
+  const [hashExists, setHashExists] = useState(null);
 
   useEffect(() => {
-    const hashRoute = window.location.hash;
+    const hashRoute = window.location.hash.substring(1); // Remove the "#" from the hash
     if (hashRoute) {
-      setHashExists(true);
+      setHashExists(hashRoute); // Set hashExists to the value of hashRoute
     }
   }, []);
   return (
@@ -391,13 +390,311 @@ function ServiceMain({ data }) {
             <>
               {data.Services_data.map((service, index) => {
                 const direction = "up";
+                console.log("first", hashExists);
                 return (
                   <React.Fragment key={index} >
-                    <VisibilitySensor partialVisibility>
+                    {hashExists === service?.Service_post_title?.toLowerCase() ? (
+                      <>
+                         <Box
+                         key={index}
+                         sx={{
+                           display: "flex",
+                           // flex:"column",
+                           justifyContent: "center",
+                         }}
+                         
+                         >
+                         <Box
+                           id={service?.Service_post_title?.toLowerCase()}
+                           key={index}
+                           sx={{
+                             width: "100%",
+                             maxWidth: "80vw",
+                           }}
+                           >
+                           <Typography
+                             sx={{
+                               color: "header.text",
+                               fontSize: "47px",
+                               letterSpacing: "15px",
+                               lineHeight: "80px",
+                               textTransform: "uppercase",
+                               fontWeight: "700",
+                               "@media only screen and (max-width:620px)": {
+                                 fontSize: "30px",
+                                 letterSpacing: "12px",
+                                 lineHeight: "45px",
+                                 my: 2,
+                               },
+                               "@media only screen and (max-width:380px)": {
+                                 letterSpacing: "10px",
+                                 fontSize: "26px",
+                               },
+                             }}
+                           >
+                             {service?.Service_post_title ||
+                               "No Title Available"}
+                           </Typography>
+
+                           {service?.custom_data?.format_with_headings
+                             ?.length > 0 &&
+                             service?.custom_data?.format_with_headings?.map(
+                               (text, index) => (
+                                 <Box
+                                   key={index}
+                                   sx={{
+                                     marginTop: "35px",
+                                     "@media only screen and (max-width:620px)":
+                                       {
+                                         marginTop: "10px",
+                                       },
+                                   }}
+                                 >
+                                   <Typography
+                                     sx={{
+                                       fontSize: "16px",
+                                       color: "header.text",
+                                       fontWeight: "500",
+                                       lineHeight: "22px",
+                                       //letterSpacing: "7px",
+                                       fontWeight: "500",
+                                       "@media only screen and (max-width:620px)":
+                                         {
+                                           fontSize: "12px",
+                                           lineHeight: "19px",
+                                           //letterSpacing: "4px"
+                                         },
+                                       "@media only screen and (max-width:380px)":
+                                         {
+                                           //letterSpacing: "1px",
+                                         },
+                                     }}
+                                   >
+                                     <Typography
+                                         component="span"
+                                       sx={{
+                                         fontSize: "16px",
+                                         color: "header.text",
+                                         fontWeight: "500",
+                                         lineHeight: "22px",
+                                         letterSpacing: "7px",
+                                         fontWeight: "700",
+                                         "@media only screen and (max-width:620px)":
+                                           {
+                                             fontSize: "12px",
+                                             lineHeight: "19px",
+                                             letterSpacing: "5px"
+                                           },
+                                         "@media only screen and (max-width:380px)":
+                                           {
+                                             letterSpacing: "1px",
+                                           },
+                                       }}
+                                     >
+                                       {text?.heading}
+                                       <span
+                                         style={{
+                                           color: "#c61d20",
+                                           paddingLeft: "2px",
+                                         }}
+                                       >
+                                         /
+                                       </span>
+                                     </Typography>
+                                     {text?.content}
+                                   </Typography>
+                                 </Box>
+                               )
+                             )}
+
+                           {service.custom_data?.format_with_bullets
+                             ?.length > 0 && (
+                             <Box
+                               component="ul"
+                               sx={{ listStyleType: "disc" }}
+                             >
+                               {service.custom_data.format_with_bullets.map(
+                                 (bullet, bulletIndex) => (
+                                   <Box
+                                     component="li"
+                                     key={bulletIndex}
+                                     sx={{
+                                       marginBottom: "4px",
+                                       position: "relative",
+                                       paddingLeft: "20px", // Adjust as needed for indentation
+                                       "&::before": {
+                                         content: "'+'",
+                                         position: "absolute",
+                                         left: 0,
+                                         top: 0,
+                                         color: "header.text",
+                                         fontSize: "16px",
+                                         letterSpacing: "8px",
+                                         lineHeight: "30px",
+                                         textTransform: "uppercase",
+                                         fontWeight: "500",
+                                       },
+                                     }}
+                                   >
+                                     <Typography
+                                       sx={{
+                                         color: "header.text",
+                                         fontSize: "16px",
+                                         letterSpacing: "8px",
+                                         lineHeight: "30px",
+                                         textTransform: "uppercase",
+                                         fontWeight: "500",
+                                         display: "inline-block",
+                                         "@media only screen and (max-width:620px)": {
+                                           fontSize: "12px",
+                                           letterSpacing: "4px",
+                                           lineHeight: "25px",
+                                           fontWeight: "600",
+                                           "&::before": {
+                                             letterSpacing: "6px",
+                                           },
+                                         },
+                                         "@media only screen and (max-width:380px)": {
+                                           letterSpacing: "4px",
+                                           "&::before": {
+                                             letterSpacing: "1px",
+                                           },
+                                         },
+                                       }}
+                                     >
+                                       {bullet.bullet_heading}
+                                     </Typography>
+                                   </Box>
+                                 )
+                               )}
+                             </Box>
+                           )}
+
+                           {service?.Service_post_content && (
+                             <Box
+                               className={`${index}-center`}
+                               sx={{
+                                 fontSize: "16px",
+                                 color: "header.text",
+                                 fontWeight: "500",
+                                 lineHeight: "22px",
+                                 //letterSpacing: "7px",
+                                 fontWeight: "500",
+                                 // textAlign:"center",
+                                 // whiteSpace: "normal",
+                                 // wordBreak: "break-word",
+                                 "@media only screen and (max-width:620px)":
+                                   {
+                                     fontSize: "12px",
+                                     lineHeight: "19px",
+                                     //letterSpacing: "4px"
+                                     // wordBreak: "break-word",
+                                     // paddingRight: "10px",
+                                   },
+                                 "@media only screen and (max-width:380px)":
+                                   {
+                                     //letterSpacing: "1px",
+                                   },
+                               }}
+                             >
+                               <div
+                                 className={`${index}-center`}
+                                 dangerouslySetInnerHTML={{
+                                   __html: service?.Service_post_content,
+                                 }}
+                               ></div>
+                             </Box>
+                           )}
+                         </Box>
+                       </Box>
+
+                       {service.custom_data?.services_images && (
+                         <Grid
+                           container
+                           spacing={{ xs: 2, sm: 2, md: 2 }}
+                           sx={{ px: 1, pt: 2 }}
+                         >
+                           {service.custom_data.services_images.map(
+                             (img, i) => (
+                               <Grid
+                                 item
+                                 xs={6}
+                                 md={4}
+                                 lg={3}
+                                 key={i}
+                                 sx={{
+                                   display: "flex",
+                                   justifyContent: "center",
+                                   "& img":{
+                                     objectFit: "cover",
+                                     width: "100%",
+                                     height: "290px"
+                                   },
+                                   "@media only screen and (max-width:620px)":{
+                                   "& img":{
+                                   height: "190px"
+                                   }
+                                 },
+                                 "@media only screen and (max-width:400px)":{
+                                   "& img":{
+                                   height: "150px"
+                                   }
+                                 }
+                                 }}
+                               >
+                                 {/* <div style={{ width: "100%" }}> */}
+                                 <img
+                                   src={img?.image.url}
+                                   alt={img?.image.alt || "Service Image"}
+                                   // width={280}
+                                   // height={290}
+                                   
+                                 />
+                                 {/* </div> */}
+                               </Grid>
+                             )
+                           )}
+                         </Grid>
+                       )}
+
+                       {index < data.Services_data.length - 1 && (
+                         <Box
+                           sx={{
+                             width: "100%",
+                             display: "flex",
+                             mt:3,
+                             justifyContent:
+                               index % 2 === 0 ? "flex-end" : "flex-start",
+                           }}
+                         >
+                           <Box
+                             sx={{
+                               display: "flex",
+                               justifyContent: "center",
+                               width: "40%",
+                               
+                               color:"#c61d20",
+                               fontSize:"170px",
+                               fontWeight:"bold",
+                             }}
+                           >
+                             {/* <Image
+                               alt="Random image"
+                               src={"/images/plus.png"}
+                               width={110}
+                               height={90}
+                             /> */}
+                             <span>+</span>
+                           </Box>
+                         </Box>
+                       )}
+                       </>
+                      ) : (
+                      <VisibilitySensor>
                       {({ isVisible }) => (
                         <Slide
                         direction={direction}
-                        duration={hashExists ? 400 : 1200}
+                        duration={1200}
                         delay={100}  // Consistent delay
                         triggerOnce
                         in={isVisible}
@@ -698,6 +995,7 @@ function ServiceMain({ data }) {
                         </Slide>
                       )}
                     </VisibilitySensor>
+                      )}
                   </React.Fragment>
                 );
               })}
