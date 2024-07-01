@@ -66,9 +66,11 @@ function ServiceMain({ data }) {
     //   }
     // });
     
-    const serviceElement = targetRef.current;
+    const serviceToAnimate = data?.Services_data.find(
+      item => item.Service_post_title?.toLowerCase() === service
+    );
 
-    if (serviceElement) {
+    if (serviceToAnimate) {
       // Set visibility state to true to trigger slide animation
       setIsVisible(true);
     }
