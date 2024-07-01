@@ -54,25 +54,40 @@ function ServiceMain({ data }) {
   //   }
   // }, [data?.Services_data, focus]);
 
+  // useEffect(() => {
+  //   const hashRoute = window.location.hash;
+  //   const service = hashRoute.replace("#", "");
+
+  //   // data?.Services_data.forEach((item, index) => {
+  //   //   if (item?.Service_post_title?.toLowerCase() === service) {
+  //   //     setCompare(`${index}-center`);
+  //   //   }
+  //   // });
+  //   let elem = document.getElementById(service);
+  //   if (elem) {
+  //     elem.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start", // Scrolls to the top of the element
+  //       // inline: "center",
+  //     });
+  //   }
+  // }, [data?.Services_data]);
   useEffect(() => {
-    const hashRoute = window.location.hash;
-    const service = hashRoute.replace("#", "");
-
-    // data?.Services_data.forEach((item, index) => {
-    //   if (item?.Service_post_title?.toLowerCase() === service) {
-    //     setCompare(`${index}-center`);
-    //   }
-    // });
-    let elem = document.getElementById(service);
-    if (elem) {
-      elem.scrollIntoView({
-        behavior: "smooth",
-        block: "start", // Scrolls to the top of the element
-        // inline: "center",
-      });
-    }
+    const scrollToElement = () => {
+      const hashRoute = window.location.hash;
+      const service = hashRoute.replace("#", "");
+      let elem = document.getElementById(service);
+      if (elem) {
+        elem.scrollIntoView({
+          behavior: "smooth",
+          block: "start", // Scrolls to the top of the element
+        });
+      }
+    };
+  
+    // Adding a small delay to ensure elements are fully rendered
+    setTimeout(scrollToElement, 100);
   }, [data?.Services_data]);
-
   // const handleScroll = (event) => {
   //   var elem = document.elementFromPoint(
   //     $(window).width() / 2,
